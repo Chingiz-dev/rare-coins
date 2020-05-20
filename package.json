@@ -1,0 +1,27 @@
+{
+  "name": "rare-coins",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chingiz-dev/rare-coins.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "bugs": {
+    "url": "https://github.com/Chingiz-dev/rare-coins/issues"
+  },
+  "homepage": "https://github.com/Chingiz-dev/rare-coins#readme"
+}
