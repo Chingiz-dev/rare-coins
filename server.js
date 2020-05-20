@@ -1,7 +1,8 @@
 const mysql = require('mysql');
 const express = require('express');
 const multer = require('multer');
-const cors = require('cors');
+// const cors = require('cors');
+const path = require('path');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './images/');
@@ -12,7 +13,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const port = process.env.PORT || 3008;
+const port = process.env.PORT || 5000;
 
 const pool = mysql.createPool({
   host: 'localhost',
@@ -23,13 +24,58 @@ const pool = mysql.createPool({
 
 const app = express();
 app.use(express.json());
-app.use(cors());
-app.use('/images', express.static('images'));
+// app.use(cors());
+// app.use('/images', express.static('images'));
+app.use(express.static('images'));
+app.use(express.static(path.join(__dirname, 'client/build')));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+// });
+
 
 app.get('/coins', (req, res) => {
   pool.query('SELECT * FROM coins', (err, data) => {
     if (err) {
       res.status(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+app.get('/coins/:typ', (req, res) => {
+  const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" LIMIT 0, 6';
+  pool.query(sql, (err, data) => {
+    if (err) {
+      // res.json(err);
+      res.status(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+app.get('/coinstyp/:typ', (req, res) => {
+  const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" LIMIT 0, 1';
+  pool.query(sql, (err, data) => {
+    if (err) {
+      // res.json(err);
+      res.status(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+app.get('/coin/:id', (req, res) => {
+  const sql = 'SELECT * FROM coins WHERE coinID = ?';
+  console.log(req.params.id);
+  console.log(sql);
+  pool.query(sql, [req.params.id], (err, data) => {
+    if (err) {
+      res.status(500).json(err);
+    } else if (!data.length) {
+      res.status(404).send();
     } else {
       res.json(data);
     }
@@ -64,32 +110,6 @@ app.post('/coin', upload.array('coin', 2), (req, res) => {
     } else {
       console.log(err);
       res.status(500).json('server down');
-    }
-  });
-});
-
-app.get('/coins/:typ', (req, res) => {
-  const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" LIMIT 0,1';
-  pool.query(sql, (err, data) => {
-    if (err) {
-      res.status(500);
-    } else {
-      res.json(data);
-    }
-  });
-});
-
-app.get('/coin/:id', (req, res) => {
-  const sql = 'SELECT * FROM coins WHERE coinID = ?';
-  console.log(req.params.id);
-  console.log(sql);
-  pool.query(sql, [req.params.id], (err, data) => {
-    if (err) {
-      res.status(500).json(err);
-    } else if (!data.length) {
-      res.status(404).send();
-    } else {
-      res.json(data);
     }
   });
 });
