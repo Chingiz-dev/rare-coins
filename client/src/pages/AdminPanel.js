@@ -14,7 +14,6 @@ class AdminPanel extends Component {
   }
 
   changeFilter = (value) => {
-    console.log(value);
     this.setState({ filter: value });
   }
 
@@ -23,7 +22,6 @@ class AdminPanel extends Component {
   }
 
   getCoins = () => {
-    // const query = '/coinsall' + this.props.filter;
     fetch('/coinsall')
       .then((res) =>
         res.json()
@@ -62,7 +60,6 @@ class AdminPanel extends Component {
     })
       .then(res => res.json())
       .then((data) => {
-        console.log(data);
         this.setState({ username: data.login })
         this.props.onLogin(data.token, data.login);
         this.getCoins();

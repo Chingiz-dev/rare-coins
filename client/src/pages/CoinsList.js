@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import styled, { ThemeConsumer } from "styled-components";
+import styled from "styled-components";
 import SimpleFilter from '../components/SimpleFilter';
 import SmallCoinDescription from '../components/SmallCoinDescription';
 
@@ -13,16 +13,12 @@ class CoinsList extends Component {
 
   getCoins = () => {
     const query = '/coins/' + this.props.filter;
-    console.log(query);
     fetch(query)
       .then((res) =>
         res.json()
       )
       .then((data) => {
         if (data.length > 0) {
-          // console.log(data);
-          // console.log(data[0]);
-          // console.log(data[0].rev);
           this.setState({ coins: data });
         }
         else { console.log('err', data) }
@@ -30,9 +26,7 @@ class CoinsList extends Component {
   }
 
   changeFilter = () => {
-    console.log('filter changing');
-    if (this.props.filter != this.state.filter) {
-      console.log('not equal');
+    if (this.props.filter !== this.state.filter) {
       this.setState({ filter: this.props.filter });
       this.getCoins();
     }

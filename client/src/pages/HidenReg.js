@@ -26,7 +26,6 @@ export default class HidenReg extends React.Component {
     })
       .then(res => res.json())
       .then((data) => {
-        console.log(data);
         this.onLogin(data.login);
       });
   }

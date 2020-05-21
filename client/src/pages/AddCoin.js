@@ -188,10 +188,6 @@ class AddCoin extends Component {
 
         </Form>
 
-
-
-
-
       </div>
     )
   }

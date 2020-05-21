@@ -33,17 +33,14 @@ class App extends React.Component {
   }
 
   changeFilter = (value) => {
-    console.log(value);
     this.setState({ filter: value });
   }
 
   changeCoin = (value) => {
-    console.log(value);
     this.setState({ coinDetails: value });
   }
 
   render = () => {
-    console.log(this.state.filter, 'from app');
     return (
 
       <Router>

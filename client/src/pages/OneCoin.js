@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-// import '../components/oneCoinStyle.css';
 class OneCoin extends Component {
   render = () => {
     const { coin } = this.props;

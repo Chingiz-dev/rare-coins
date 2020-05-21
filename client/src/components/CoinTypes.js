@@ -14,11 +14,7 @@ class CoinTypes extends Component {
       )
       .then((data) => {
         if (data.length > 0) {
-          // console.log(data);
-          // console.log(data[0]);
-          // console.log(data[0].obv);
           this.setState({ coin: data[0] });
-          // this.setState({ coin: data[0].obv });
         }
         else { console.log('err')}
       });
@@ -31,10 +27,6 @@ class CoinTypes extends Component {
   handleClick = () => {
     this.props.changeFilter(this.props.cointype);
   }
-
-  // handleCoinClick = () => {
-  //   this.props.changeCoin(this.state.coin);
-  // }
 
   render = () => {
     const { cointype } = this.props;

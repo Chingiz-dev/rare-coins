@@ -10,7 +10,6 @@ class SmallCoinDescription extends React.Component {
   }
 
   render() {
-    // console.log(this.props.coin);
     const { coin } = this.props;
     return (
       <Section>
