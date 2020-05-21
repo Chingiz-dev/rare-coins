@@ -1,6 +1,8 @@
 const mysql = require('mysql');
 const express = require('express');
 const multer = require('multer');
+const bcrypt = require('bcrypt');
+const randomString = require('./randomString');
 // const cors = require('cors');
 const path = require('path');
 const storage = multer.diskStorage({
@@ -33,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 // });
 
 
-app.get('/coins', (req, res) => {
+app.get('/coinsall', (req, res) => {
   pool.query('SELECT * FROM coins', (err, data) => {
     if (err) {
       res.status(500);
@@ -44,7 +46,7 @@ app.get('/coins', (req, res) => {
 });
 
 app.get('/coins/:typ', (req, res) => {
-  const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" LIMIT 0, 6';
+  const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" OR coin = "' + req.params.typ +'" LIMIT 0, 6';
   pool.query(sql, (err, data) => {
     if (err) {
       // res.json(err);

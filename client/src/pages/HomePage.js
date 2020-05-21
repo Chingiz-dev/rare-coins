@@ -10,22 +10,20 @@ class HomePage extends Component {
     return (
       <div>
         <Header>
-          <h1>Homepage</h1>
+          <H1>Homepage</H1>
           <Link to="/admin">Admin panel</Link>
         </Header>
         <div>
-          <SimpleFilter />
+          <SimpleFilter
+            changeFilter={this.props.changeFilter}/>
         </div>
         <ThreeCoin>
           <CoinTypes cointype='Bullion'
-            changeFilter={this.props.changeFilter}
-            changeCoin={this.props.changeCoin} />
+            changeFilter={this.props.changeFilter} />
           <CoinTypes cointype='Exclusive'
-            changeFilter={this.props.changeFilter}
-            changeCoin={this.props.changeCoin} />
+            changeFilter={this.props.changeFilter} />
           <CoinTypes cointype='Commemorative'
-            changeFilter={this.props.changeFilter}
-            changeCoin={this.props.changeCoin} />
+            changeFilter={this.props.changeFilter} />
         </ThreeCoin>
       </div>
     )
@@ -33,12 +31,21 @@ class HomePage extends Component {
 }
 
 
+export default HomePage;
+
 const Header = styled.header`
     display:flex;
-    justify-content: space-around;
+    margin: 0.2vh 4.5vw 1.2vh 7vw;
+    justify-content: space-between;
 `
 const ThreeCoin = styled.div`
     display:flex;
-    justify-content: space-around;
+    margin-left: 7vw;
 `
-export default HomePage;
+
+const H1 = styled.h1`
+    width: 45vw;
+    height: 6vh;
+    font-size: 8vh;
+    font-weight: 300;
+`;

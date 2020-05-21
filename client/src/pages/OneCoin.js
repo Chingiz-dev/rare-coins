@@ -6,23 +6,28 @@ class OneCoin extends Component {
   render = () => {
     const { coin } = this.props;
     return (
-      <div>
 
-        <div class="coins-main">
-          <div class="coins-big">
-            <div class="coins-averse-big">
-              <CoinImage src={coin.obv} alt={coin.coin} />
-            </div>
-            <div class="coins-reverse-big">
-              <CoinImage  src={coin.rev} alt={coin.coin} />
-            </div>
+      <Main>
+
+
+        <ImagesDiv>
+          <div>
+            <CoinImage src={coin.obv} alt={coin.coin} />
           </div>
-          <div class="coins-text">
-            <div class="coins-text-upper">
-              <h1 class="coins-h1">{coin.coin}</h1>
-              <p>{coin.shortD}</p>
-              <p class="back-page-font">{coin.longD}</p>
-              <table>
+          <div >
+            <CoinImage src={coin.rev} alt={coin.coin} />
+          </div >
+        </ImagesDiv >
+
+
+
+        <TextDiv>
+          <div class="coins-text-upper">
+            <h1 class="coins-h1">{coin.coin}</h1>
+            <p>{coin.shortD}</p>
+            <p class="back-page-font">{coin.longD}</p>
+            <table>
+              <tbody>
                 <tr>
                   <td>Issuing country</td>
                   <td>{coin.country}</td>
@@ -51,26 +56,38 @@ class OneCoin extends Component {
                   <td>Price</td>
                   <td>{coin.price}</td>
                 </tr>
-              </table>
-            </div>
-            <div class="coins-text-lower">
-              <Link to="/coinslist" >Back to the list ></Link>
-            </div>
+              </tbody>
+            </table>
           </div>
-        </div>
-      </div>
+          <div class="coins-text-lower">
+            <Link to="/coinslist" >Back to the list ></Link>
+          </div>
+        </TextDiv>
 
-
-
-
+      </Main>
     )
   }
 }
 export default OneCoin;
 
 const CoinImage = styled.img`
-    height: 29.7vh; transition: 1s;
+    height: 40vh;
+    transition: 0.5s;
     &:hover {
-      transform: scale(1.10);
+      transform: scale(1.2);
     }
-`
+`;
+
+const Main = styled.div`
+    display: flex;
+    justify-content: center;
+    padding-top: 5vh;
+`;
+
+const ImagesDiv = styled.div`
+    width: 30vw;
+`;
+
+const TextDiv = styled.div`
+    width: 30vw;
+`;

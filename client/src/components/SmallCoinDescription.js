@@ -10,7 +10,7 @@ class SmallCoinDescription extends React.Component {
   }
 
   render() {
-    console.log(this.props.coin);
+    // console.log(this.props.coin);
     const { coin } = this.props;
     return (
       <Section>
@@ -20,7 +20,7 @@ class SmallCoinDescription extends React.Component {
           </Link>
         </div>
         <div>
-          <h2>{coin.coin}</h2>
+          <H2>{coin.coin}</H2>
           <p>{coin.shortD}</p>
         </div>
       </Section>
@@ -45,4 +45,8 @@ const SmallCoinImage = styled.img`
       transform: scale(1.10);
       box-shadow: 2px 2px 4px #000000;
     }
-`
+`;
+
+const H2 = styled.h2`
+    font-size: 3vh;
+`;

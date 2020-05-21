@@ -10,13 +10,13 @@ import AddCoin from './pages/AddCoin';
 
 class App extends React.Component {
   state = {
-    filterType: 'notfound',
+    filter: 'notfound',
     coinDetails: '',
   }
 
   changeFilter = (value) => {
     console.log(value);
-    this.setState({ filterType: value });
+    this.setState({ filter: value });
   }
 
   changeCoin = (value) => {
@@ -25,20 +25,21 @@ class App extends React.Component {
   }
 
   render = () => {
-    const { filterType } = this.state.filterType;
-    console.log(filterType);
+    console.log(this.state.filter, 'from app');
     return (
 
       <Router>
         <Switch>
           <Route path="/" exact>
-            <HomePage changeFilter={this.changeFilter} changeCoin={this.changeCoin} />
+            <HomePage changeFilter={this.changeFilter} />
           </Route>
           <Route path="/search" exact>
             <SearchCoin />
           </Route>
           <Route path="/coinslist" exact>
-            <CoinsList filter={this.state.filterType} changeCoin={this.changeCoin}/>
+            <CoinsList filter={this.state.filter}
+            changeCoin={this.changeCoin}
+            changeFilter={this.changeFilter} />
           </Route>
           <Route path="/onecoin" exact>
             <OneCoin coin={this.state.coinDetails} />

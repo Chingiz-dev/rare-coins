@@ -14,12 +14,13 @@ class CoinTypes extends Component {
       )
       .then((data) => {
         if (data.length > 0) {
-          console.log(data);
-          console.log(data[0]);
-          console.log(data[0].obv);
+          // console.log(data);
+          // console.log(data[0]);
+          // console.log(data[0].obv);
           this.setState({ coin: data[0] });
           // this.setState({ coin: data[0].obv });
         }
+        else { console.log('err')}
       });
   }
 
@@ -31,32 +32,41 @@ class CoinTypes extends Component {
     this.props.changeFilter(this.props.cointype);
   }
 
-  handleCoinClick = () => {
-    this.props.changeCoin(this.state.coin);
-  }
+  // handleCoinClick = () => {
+  //   this.props.changeCoin(this.state.coin);
+  // }
 
   render = () => {
     const { cointype } = this.props;
     let { coin } = this.state;
     return (
-      <div>
-        <h2>{cointype} coins</h2>
+      <CoinBlock>
+        <H2>{cointype} coins</H2>
         <Link to="/coinslist" onClick={this.handleClick} >Show all ></Link>
         <div>
-          <Link to="/onecoin" onClick={this.handleCoinClick} >
+          <Link to="/coinslist" onClick={this.handleClick} >
             <BigCoins src={coin.obv} alt={coin.coin} />
           </Link>
         </div>
-      </div>
+      </CoinBlock>
     )
   }
 }
 export default CoinTypes;
 
 const BigCoins = styled.img`
+  margin-top: 3vh;
     height: 29.7vh; transition: 1s;
     &:hover {
       transform: scale(1.10);
-      box-shadow: 2px 2px 4px #000000;
     }
-`
+`;
+
+const CoinBlock = styled.div`
+    width: 30vw;
+`;
+
+const H2 = styled.h2`
+    font-size: 5vh;
+    font-weight: 550;
+`;

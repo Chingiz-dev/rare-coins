@@ -7,10 +7,10 @@ class SearchCoin extends Component {
     render = () => {
         return (
             <div>
-                <Header>
-                    <h1>Homepage</h1>
-                    <Link to="/admin">Admin panel</Link>
-                </Header>
+            <Header>
+              <H1>Homepage</H1>
+              <Link to="/admin">Admin panel</Link>
+            </Header>
                 <div>
                     <ComplexFilter />
                 </div>
@@ -20,8 +20,17 @@ class SearchCoin extends Component {
 }
 
 
+export default SearchCoin;
+
 const Header = styled.header`
     display:flex;
-    justify-content: space-around;
+    margin: 0.2vh 4.5vw 1.2vh 7vw;
+    justify-content: space-between;
 `
-export default SearchCoin;
+
+const H1 = styled.h1`
+    width: 45vw;
+    height: 6vh;
+    font-size: 8vh;
+    font-weight: 300;
+`;
