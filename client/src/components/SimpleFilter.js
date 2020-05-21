@@ -31,9 +31,6 @@ class SimpleFilter extends Component {
           </Link>
         </div>
 
-        <div>
-          <Link to="/search">advanced filter V</Link>
-        </div>
       </FilterForm >
     )
   }

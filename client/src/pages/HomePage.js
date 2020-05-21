@@ -17,6 +17,9 @@ class HomePage extends Component {
           <SimpleFilter
             changeFilter={this.props.changeFilter}/>
         </div>
+        <div>
+          <Link to="/search">advanced filter V</Link>
+        </div>
         <ThreeCoin>
           <CoinTypes cointype='Bullion'
             changeFilter={this.props.changeFilter} />
