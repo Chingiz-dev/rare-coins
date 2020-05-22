@@ -39,10 +39,9 @@ const Section = styled.div`
 
 const SmallCoinImage = styled.img`
     height: 16.6vh;
-    transition: 1s;
+    transition: 0.5s;
     &:hover {
-      transform: scale(1.10);
-      box-shadow: 2px 2px 4px #000000;
+      transform: scale(1.15);
     }
 `;
 

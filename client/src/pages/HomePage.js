@@ -15,11 +15,11 @@ class HomePage extends Component {
         </Header>
         <div>
           <SimpleFilter
-            changeFilter={this.props.changeFilter}/>
+            changeFilter={this.props.changeFilter} />
         </div>
-        <div>
+        <Filters>
           <Link to="/search">advanced filter V</Link>
-        </div>
+        </Filters>
         <ThreeCoin>
           <CoinTypes cointype='Bullion'
             changeFilter={this.props.changeFilter} />
@@ -52,3 +52,7 @@ const H1 = styled.h1`
     font-size: 8vh;
     font-weight: 300;
 `;
+
+const Filters = styled.div`
+    margin-left: 7vw;
+`

@@ -21,10 +21,10 @@ class OneCoin extends Component {
 
 
         <TextDiv>
-          <div class="coins-text-upper">
-            <h1 class="coins-h1">{coin.coin}</h1>
+          <div>
+            <h1>{coin.coin}</h1>
             <p>{coin.shortD}</p>
-            <p class="back-page-font">{coin.longD}</p>
+            <p>{coin.longD}</p>
             <table>
               <tbody>
                 <tr>
@@ -58,7 +58,7 @@ class OneCoin extends Component {
               </tbody>
             </table>
           </div>
-          <div class="coins-text-lower">
+          <div>
             <Link to="/coinslist" >Back to the list ></Link>
           </div>
         </TextDiv>
