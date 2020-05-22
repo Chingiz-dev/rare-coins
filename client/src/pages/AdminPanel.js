@@ -17,6 +17,10 @@ class AdminPanel extends Component {
     this.setState({ filter: value });
   }
 
+  changeCoin = (coin) => {
+    console.log(coin.coinID);
+  }
+
   componentDidMount = () => {
     this.state.username && this.getCoins();
   }
@@ -87,7 +91,7 @@ class AdminPanel extends Component {
               {this.state.coins.map(coin => <SmallCoinDescription
                 key={coin.coinID}
                 coin={coin}
-                changeCoin={this.props.changeCoin} />)}
+                changeCoin={this.changeCoin} />)}
             </div>
 
             <p>Hello, {this.state.username} !</p>
