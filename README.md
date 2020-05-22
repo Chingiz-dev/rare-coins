@@ -1,7 +1,7 @@
 # rare-coins
-npm install
-cd client
-npm install
+Run `npm install`
+GoTO `cd client`
+Run `npm install`
 
 ## Run dev app
 Run `npm run dev`
