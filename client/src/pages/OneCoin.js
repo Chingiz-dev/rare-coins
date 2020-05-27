@@ -22,52 +22,56 @@ class OneCoin extends Component {
 
         <TextDiv>
           <div>
-            <h1>{coin.coin}</h1>
+            <H1>{coin.coin}</H1>
             <p>{coin.shortD}</p>
             <p>{coin.longD}</p>
-            <table>
+            <Table>
               <tbody>
+                <Tr>
+                  <Td>Issuing country</Td>
+                  <Td>{coin.country}</Td>
+                </Tr>
                 <tr>
-                  <td>Issuing country</td>
-                  <td>{coin.country}</td>
+                  <Td>Composition</Td>
+                  <Td>{coin.metal}</Td>
                 </tr>
+                <Tr>
+                  <Td>Quality</Td>
+                  <Td>{coin.quality}</Td>
+                </Tr>
                 <tr>
-                  <td>Composition</td>
-                  <td>{coin.metal}</td>
+                  <Td>Denomination</Td>
+                  <Td>{coin.denom}</Td>
                 </tr>
+                <Tr>
+                  <Td>Year</Td>
+                  <Td>{coin.year}</Td>
+                </Tr>
                 <tr>
-                  <td>Quality</td>
-                  <td>{coin.quality}</td>
+                  <Td>Weight</Td>
+                  <Td>{coin.weight}</Td>
                 </tr>
-                <tr>
-                  <td>Denomination</td>
-                  <td>{coin.denom}</td>
-                </tr>
-                <tr>
-                  <td>Year</td>
-                  <td>{coin.year}</td>
-                </tr>
-                <tr>
-                  <td>Weight</td>
-                  <td>{coin.weight}</td>
-                </tr>
-                <tr>
-                  <td>Price</td>
-                  <td>{coin.price}</td>
-                </tr>
+                <Tr>
+                  <Td>Price</Td>
+                  <Td>{coin.price}</Td>
+                </Tr>
               </tbody>
-            </table>
+            </Table>
           </div>
           <div>
             <StyledLink to="/coinslist" >Back to the list ></StyledLink>
           </div>
         </TextDiv>
-
       </Main>
     )
   }
 }
 export default OneCoin;
+
+const H1 = styled.h1`
+       font-size: 28px;
+    font-weight: bold;
+`;
 
 const StyledLink = styled(Link)`
     color: black;
@@ -76,7 +80,8 @@ const StyledLink = styled(Link)`
 }`;
 
 const CoinImage = styled.img`
-    height: 40vh;
+    margin-bottom: 5vh;
+    height: 42.5vh;
     transition: 0.5s;
     &:hover {
       transform: scale(1.2);
@@ -87,6 +92,7 @@ const Main = styled.div`
     display: flex;
     justify-content: center;
     padding-top: 5vh;
+    height: 95vh;
 `;
 
 const ImagesDiv = styled.div`
@@ -94,5 +100,28 @@ const ImagesDiv = styled.div`
 `;
 
 const TextDiv = styled.div`
-    width: 30vw;
+    width: 35.3vw;
+    background-color: rgba(196, 196, 196, 0.5);
+    padding: 4vh 3vw 2vh 3vw;
+    color: black;
+    font-size: 2vh;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
+const Td = styled.td`
+    width: 50%;
+    border: 1px solid rgba(196, 196, 196, 0.5);
+    padding-left: 0.5vw;
+`;
+
+const Tr = styled.tr`
+    background-color: white;
+`;
+
+
+const Table = styled.table`
+    width: 100%;
 `;

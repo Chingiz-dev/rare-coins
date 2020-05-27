@@ -39,7 +39,7 @@ class CoinsList extends Component {
         <Header>
           <div>
             <H1>List of the coins</H1>
-            <HomeLink to="/">Homepage</HomeLink><Grey> - list of the coins</Grey>
+            <HomeLink to="/">Homepage  - list of the coins</HomeLink>
           </div>
           <AdminLink>
             <StyledLink to="/admin">Admin panel</StyledLink>
@@ -71,6 +71,8 @@ const Grey = styled.span`
 `;
 
 const HomeLink = styled(Link)`
+  position: relative;
+  bottom: -15px;
     color: #B1ABAB;
   &:hover{
     color: blueviolet;
