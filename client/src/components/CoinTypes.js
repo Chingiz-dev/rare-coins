@@ -16,7 +16,7 @@ class CoinTypes extends Component {
         if (data.length > 0) {
           this.setState({ coin: data[0] });
         }
-        else { console.log('err')}
+        else { console.log('err') }
       });
   }
 
@@ -34,7 +34,7 @@ class CoinTypes extends Component {
     return (
       <CoinBlock>
         <H2>{cointype} coins</H2>
-        <Link to="/coinslist" onClick={this.handleClick} >Show all ></Link>
+        <StyledLink to="/coinslist" onClick={this.handleClick} >Show all ></StyledLink>
         <div>
           <Link to="/coinslist" onClick={this.handleClick} >
             <BigCoins src={coin.obv} alt={coin.coin} />
@@ -45,6 +45,13 @@ class CoinTypes extends Component {
   }
 }
 export default CoinTypes;
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+  &:hover{
+    color: blueviolet;
+}`;
 
 const BigCoins = styled.img`
   margin-top: 3vh;

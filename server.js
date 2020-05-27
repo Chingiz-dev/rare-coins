@@ -15,13 +15,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const port = process.env.PORT || 5000;
 
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '12345',
-  database: 'coins'
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASS || '12345',
+  database: process.env.DB_Name || 'coins'
 });
 
 const app = express();
@@ -139,7 +138,7 @@ app.get('/coinstyp/:typ', (req, res) => {
   pool.query(sql, (err, data) => {
     if (err) {
       // res.json(err);
-      res.status(500);
+      res.status(500).json('not found');
     } else {
       res.json(data);
     }
@@ -199,6 +198,8 @@ app.post('/coin', upload.array('coin', 2), (req, res) => {
     });
   }
 });
+
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => { console.log('Started server at port ' + port); });
 

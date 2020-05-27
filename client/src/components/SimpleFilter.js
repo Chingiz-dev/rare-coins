@@ -18,18 +18,17 @@ class SimpleFilter extends Component {
   render = () => {
     return (
       <FilterForm>
-        <div>
-          <label htmlFor="filter">input field</label>
-          <br />
-          <Input type="text" id="filter"
-          value={this.state.coinType} onChange={this.handleInput}
-          />
 
+        <label htmlFor="filter"><b>Input field</b></label>
+        <InputAndButton>
+          <div>
+            <Input type="text" id="filter"
+              value={this.state.coinType} onChange={this.handleInput} />
+          </div>
           <Link to="/coinslist" onClick={this.handleClick} >
             <Button type="submit">Search</Button>
-
           </Link>
-        </div>
+        </InputAndButton>
 
       </FilterForm >
     )
@@ -41,17 +40,27 @@ const FilterForm = styled.div`
     margin-left: 7vw;
 `;
 
+const InputAndButton = styled.div`
+    display: flex;
+`;
+
 const Input = styled.input`
     border: 1px solid black;
-    width: 27vw;
+    width: 26vw;
     height: 7vh;
-    margin-right: 3vw;
+    margin: 0.7vh 3vw 0.9vh 0;
+    font-size: 3vh;
+    padding-left: 1vw;
 `;
 
 const Button = styled.button`
     border: none;
+    margin-top: 0.7vh;
     width: 8vw;
-    height: 7.3vh;
+    height: 7.4vh;
     background-color: blueviolet;
     color: white;
+    &:hover{
+      opacity: 0.8;
+      cursor: pointer;}
 `;

@@ -13,14 +13,14 @@ class SmallCoinDescription extends React.Component {
     const { coin } = this.props;
     return (
       <Section>
-        <div>
+        <CoinImg>
           <Link to="/onecoin" onClick={this.handleCoinClick} >
             <SmallCoinImage src={coin.obv} alt={coin.coin} />
           </Link>
-        </div>
+        </CoinImg>
         <div>
-          <H2>{coin.coin}</H2>
-          <p>{coin.shortD}</p>
+          <H3>{coin.coin}</H3>
+          <P>{coin.shortD}</P>
         </div>
       </Section>
     )
@@ -30,21 +30,32 @@ class SmallCoinDescription extends React.Component {
 export default SmallCoinDescription;
 
 const Section = styled.div`
-  width: 41vw;
+  width: 35vw;
   padding-left: 4vw;
   display: flex;
-  padding-bottom: 2vw;
+  padding-bottom: 0vw;
 
 `;
 
 const SmallCoinImage = styled.img`
-    height: 16.6vh;
+    height: 16vh;
     transition: 0.5s;
     &:hover {
       transform: scale(1.15);
     }
 `;
 
-const H2 = styled.h2`
+const H3 = styled.h3`
     font-size: 3vh;
+    color: blueviolet;
+    margin-block-start: 1em;
+    margin-block-end: 0.2em;
+`;
+
+const P = styled.p`
+    margin-block-start: 0.2em;
+`;
+
+const CoinImg = styled.div`
+    margin: 2.5vh 2vw 0vh 2.5vw;
 `;

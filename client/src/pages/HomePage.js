@@ -11,14 +11,16 @@ class HomePage extends Component {
       <div>
         <Header>
           <H1>Homepage</H1>
-          <Link to="/admin">Admin panel</Link>
+          <AdminLink>
+            <StyledLink to="/admin">Admin panel</StyledLink>
+          </AdminLink>
         </Header>
         <div>
           <SimpleFilter
             changeFilter={this.props.changeFilter} />
         </div>
         <Filters>
-          <Link to="/search">advanced filter V</Link>
+          <StyledLink to="/search">Advanced filter  &#709; </StyledLink>
         </Filters>
         <ThreeCoin>
           <CoinTypes cointype='Bullion'
@@ -36,15 +38,23 @@ class HomePage extends Component {
 
 export default HomePage;
 
+const StyledLink = styled(Link)`
+    color: black;
+  &:hover{
+    color: blueviolet;
+}`;
+
+
 const Header = styled.header`
     display:flex;
     margin: 0.2vh 4.5vw 1.2vh 7vw;
     justify-content: space-between;
-`
+`;
+
 const ThreeCoin = styled.div`
     display:flex;
     margin-left: 7vw;
-`
+`;
 
 const H1 = styled.h1`
     width: 45vw;
@@ -53,6 +63,11 @@ const H1 = styled.h1`
     font-weight: 300;
 `;
 
+const AdminLink = styled.div`
+    padding-top: 2vw;
+`;
+
 const Filters = styled.div`
     margin-left: 7vw;
+    margin-bottom: 0.5vh;
 `

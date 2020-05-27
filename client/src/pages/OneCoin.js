@@ -59,7 +59,7 @@ class OneCoin extends Component {
             </table>
           </div>
           <div>
-            <Link to="/coinslist" >Back to the list ></Link>
+            <StyledLink to="/coinslist" >Back to the list ></StyledLink>
           </div>
         </TextDiv>
 
@@ -68,6 +68,12 @@ class OneCoin extends Component {
   }
 }
 export default OneCoin;
+
+const StyledLink = styled(Link)`
+    color: black;
+  &:hover{
+    color: blueviolet;
+}`;
 
 const CoinImage = styled.img`
     height: 40vh;

@@ -39,14 +39,19 @@ class CoinsList extends Component {
         <Header>
           <div>
             <H1>List of the coins</H1>
-            <Link to="/">homepage</Link>
+            <HomeLink to="/">Homepage</HomeLink><Grey> - list of the coins</Grey>
           </div>
-          <Link to="/admin">Admin panel</Link>
+          <AdminLink>
+            <StyledLink to="/admin">Admin panel</StyledLink>
+          </AdminLink>
         </Header>
         <div>
           <SimpleFilter
             changeFilter={this.props.changeFilter} />
         </div>
+        <Filters>
+          <StyledLink to="/search">Advanced filter  &#709; </StyledLink>
+        </Filters>
         <SixCoins>
           {this.state.coins.map(coin => <SmallCoinDescription
             key={coin.coinID}
@@ -61,6 +66,21 @@ class CoinsList extends Component {
 
 
 export default CoinsList;
+const Grey = styled.span`
+    color: #B1ABAB;
+`;
+
+const HomeLink = styled(Link)`
+    color: #B1ABAB;
+  &:hover{
+    color: blueviolet;
+}`;
+
+const StyledLink = styled(Link)`
+    color: black;
+  &:hover{
+    color: blueviolet;
+}`;
 
 const Header = styled.header`
     display:flex;
@@ -73,8 +93,17 @@ const SixCoins = styled.div`
 `
 
 const H1 = styled.h1`
-    width: 45vw;
-    height: 6vh;
+    width: 70vw;
+    height: 3.5vh;
     font-size: 8vh;
     font-weight: 300;
+`;
+
+const Filters = styled.div`
+    margin-left: 7vw;
+    margin-bottom: 0.5vh;
+`
+
+const AdminLink = styled.div`
+    padding-top: 2vw;
 `;

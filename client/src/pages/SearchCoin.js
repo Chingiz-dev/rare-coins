@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import ComplexFilter from '../components/ComplexFilter';
 
+
 class SearchCoin extends Component {
     render = () => {
         return (
             <div>
             <Header>
               <H1>Homepage</H1>
-              <Link to="/admin">Admin panel</Link>
+          <AdminLink>
+            <StyledLink to="/admin">Admin panel</StyledLink>
+          </AdminLink>
             </Header>
                 <div>
                     <ComplexFilter />
@@ -21,6 +24,16 @@ class SearchCoin extends Component {
 
 
 export default SearchCoin;
+
+const StyledLink = styled(Link)`
+    color: black;
+  &:hover{
+    color: blueviolet;
+}`;
+
+const AdminLink = styled.div`
+    padding-top: 2vw;
+`;
 
 const Header = styled.header`
     display:flex;

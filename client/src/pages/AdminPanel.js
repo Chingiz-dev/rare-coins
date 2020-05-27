@@ -75,7 +75,9 @@ class AdminPanel extends Component {
       <div>
         <Header>
           <H1>Admin panel</H1>
-          <Link to="/">back to homepage</Link>
+          <HomeLink>
+            <StyledLink to="/">back to homepage</StyledLink>
+          </HomeLink>
         </Header>
         {this.state.username ?
           <div>
@@ -84,7 +86,7 @@ class AdminPanel extends Component {
                 changeFilter={this.state.changeFilter} />
             </div>
             <div>
-              <Link to="/admin/add"><LinkToCoin><Circle>+</Circle><div> Add a new coin</div></LinkToCoin></Link>
+              <StyledLink to="/admin/add"><LinkToCoin><Circle>+</Circle><div> Add a new coin</div></LinkToCoin></StyledLink>
             </div>
             <div>
 
@@ -96,10 +98,10 @@ class AdminPanel extends Component {
 
             <p>Hello, {this.state.username} !</p>
             <div>
-              <Link to="/admin/edit">Edit Coins</Link>
+              <StyledLink to="/admin/edit">Edit Coins</StyledLink>
             </div>
             <div>
-              <Link to="/admin/add">Add coin</Link>
+              <StyledLink to="/admin/add">Add coin</StyledLink>
             </div>
             <Link to="/">
               <Button type="button" onClick={this.handleLogout} >Sign out</Button>
@@ -117,7 +119,7 @@ class AdminPanel extends Component {
               </div>
               <Button type="submit">Sign in</Button>
             </Form>
-            <Link to="/hidenreg">HidenReg</Link>
+            <StyledLink to="/hidenreg">HidenReg</StyledLink>
           </div>
         }
       </div >
@@ -126,6 +128,19 @@ class AdminPanel extends Component {
   }
 }
 export default AdminPanel;
+
+const HomeLink = styled.div`
+    padding-top: 2vw;
+`;
+
+
+const StyledLink = styled(Link)`
+    color: black;
+  &:hover{
+    color: blueviolet;
+}`;
+
+
 
 const Button = styled.button`
     border: none;
