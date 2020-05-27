@@ -133,6 +133,53 @@ app.get('/coins/:typ', (req, res) => {
   });
 });
 
+app.post('/filter', (req, res) => {
+  const coinName = req.body.coinName;
+  const country = req.body.country;
+  const metal = req.body.metal;
+  const quality = req.body.quality;
+  const yearFrom = req.body.yearFrom;
+  const yearTo = req.body.yearTo;
+  const priceFrom = req.body.priceFrom;
+  const priceTo = req.body.priceTo;
+  const coinsPP = req.body.coinsPP;
+  const countFromCoin = req.body.countFromCoin;
+
+  console.log(coinName, 'printed');
+  // const sql = 'SELECT * FROM coins where typ = "' + coinName +
+  const sql = 'SELECT * FROM coins where ' + (coinName ? 'typ = "' + coinName + '" OR' : '') +
+    (coinName ?  ' coin = "' + coinName + '" OR' : '') +
+    (country ? ' country = "' + country  + '" or ' : '') +
+    (metal ? ' metal = "' + metal  + '" or' : '') +
+    (quality ? ' quality = "' + quality  + '" OR' : '') +
+    (priceFrom < priceTo ? '( price >  "' + priceFrom  + '" and price < "' + priceTo + '" ) or' : '') +
+    (yearFrom < yearTo ? '( year >  "' + yearFrom  + '" and year < "' + yearTo + '") or' : '') +
+    ' coin = "coin" LIMIT ' + countFromCoin + ', ' + coinsPP;
+
+
+    // '" OR coin = "' + coinName +
+    // '" OR  country = "' + country +
+    // '" or  metal = "' + metal +
+    // '" or quality = "' + quality +
+    // '" or (  price > "' + priceFrom +
+    // '" and price < "' + priceTo +
+    // '") or (  year > "' + yearFrom +
+    // '" and year < "' + yearTo +
+
+    // '") LIMIT 0, 6';
+  console.log(sql);
+
+
+  pool.query(sql, (err, data) => {
+    if (err) {
+      // res.json(err);
+      res.status(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 app.get('/coinstyp/:typ', (req, res) => {
   const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" LIMIT 0, 1';
   pool.query(sql, (err, data) => {

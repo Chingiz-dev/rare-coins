@@ -11,7 +11,7 @@ import HidenReg from './pages/HidenReg';
 
 class App extends React.Component {
   state = {
-    filter: '',
+    filter: {},
     coinDetails: '',
     token: localStorage.getItem('token'),
     username: localStorage.getItem('username')
@@ -33,7 +33,13 @@ class App extends React.Component {
   }
 
   changeFilter = (value) => {
-    this.setState({ filter: value });
+    this.setState({ filter: { coinName: value } });
+  }
+
+  changeComplexFilter = (value) => {
+    this.setState({
+      filter: value
+    });
   }
 
   changeCoin = (value) => {
@@ -49,7 +55,7 @@ class App extends React.Component {
             <HomePage changeFilter={this.changeFilter} />
           </Route>
           <Route path="/search" exact>
-            <SearchCoin />
+            <SearchCoin  changeComplexFilter={this.changeComplexFilter} />
           </Route>
           <Route path="/coinslist" exact>
             <CoinsList filter={this.state.filter}

@@ -15,7 +15,7 @@ class SearchCoin extends Component {
           </AdminLink>
             </Header>
                 <div>
-                    <ComplexFilter />
+                    <ComplexFilter  changeComplexFilter={this.props.changeComplexFilter} />
                 </div>
             </div>
         )

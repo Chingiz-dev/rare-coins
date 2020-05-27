@@ -25,9 +25,21 @@ class ComplexFilter extends Component {
   }
 
   handleButtonClick = () => {
+    const filter = {
+      coinName: this.state.coin,
+      country: this.state.country,
+      metal: this.state.metal,
+      quality: this.state.quality,
+      yearFrom: this.state.yearFrom,
+      yearTo: this.state.yearTo,
+      priceFrom: this.state.priceFrom,
+      priceTo: this.state.priceTo
+    }
 
-    console.log(this.state);
+    this.props.changeComplexFilter(filter);
+
   }
+
 
   render = () => {
     return (
@@ -49,7 +61,7 @@ class ComplexFilter extends Component {
           <StyledLink to="/">Advanced filter &#708;</StyledLink>
         </LinkDiv>
 
-        <InputRow>
+        <InputRows>
           <div>
             <label htmlFor="country"><b>Issuing country</b></label>
             <br />
@@ -67,9 +79,9 @@ class ComplexFilter extends Component {
               onChange={this.handleInput}
               value={this.state.priceTo} />
           </div>
-        </InputRow>
+        </InputRows>
 
-        <InputRow>
+        <InputRows>
           <div>
             <label htmlFor="metal"><b>Metal</b></label>
             <br />
@@ -87,7 +99,7 @@ class ComplexFilter extends Component {
               onChange={this.handleInput}
               value={this.state.yearTo} />
           </div>
-        </InputRow>
+        </InputRows>
 
         <div>
           <label htmlFor="quality"><b>Quality of the coin </b></label>
@@ -102,14 +114,13 @@ class ComplexFilter extends Component {
 }
 export default ComplexFilter;
 
-const SubmitDiv = styled.div`
-    padding-top: 3.2vh;
-`;
-
-
 const InputRow = styled.div`
     display: flex;
+`;
 
+const InputRows = styled.div`
+    margin-bottom: 2vh;
+    display: flex;
 `;
 
 const StyledLink = styled(Link)`

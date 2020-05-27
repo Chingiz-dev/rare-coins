@@ -8,20 +8,93 @@ import SmallCoinDescription from '../components/SmallCoinDescription';
 class CoinsList extends Component {
   state = {
     coins: [],
-    filter: '',
+    filter: {},
+    coinsPerPage: 6,
+    countFromCoin: 0,
+    prev: false,
+    next: false
+  }
+
+  setCoinsPerPage = (evt) => {
+    this.setState({
+      coinsPerPage: evt.target.value,
+      countFromCoin: 0,
+      prev: false,
+      next: false
+    });
+  }
+
+  goToPrevious = () => {
+    const dif = this.state.countFromCoin - this.state.coinsPerPage;
+    if (dif < 0) {
+      this.setState({
+        countFromCoin: 0,
+        prev: true,
+        next: false
+      })
+    } else {
+      this.setState({
+        countFromCoin: dif,
+        prev: false,
+        next: false
+      });
+    }
+  }
+
+  goToNext = () => {
+    const dif = +this.state.countFromCoin + +this.state.coinsPerPage;
+    if (this.state.coinsPerPage <= this.state.coins.length) {
+      this.setState({
+        prev: false,
+        next: false,
+        countFromCoin: dif
+      })
+    } else {
+      this.setState({
+        countFromCoin: this.state.countFromCoin,
+        prev: false,
+        next: true,
+      })
+    }
   }
 
   getCoins = () => {
-    const query = '/coins/' + this.props.filter;
-    fetch(query)
+    const filter = this.props.filter;
+    const requestBody = {
+      coinName: filter.coinName,
+      country: filter.country,
+      metal: filter.metal,
+      quality: filter.quality,
+      yearFrom: filter.yearFrom,
+      yearTo: filter.yearTo,
+      priceFrom: filter.priceFrom,
+      priceTo: filter.priceTo,
+      coinsPP: this.state.coinsPerPage,
+      countFromCoin: this.state.countFromCoin,
+    };
+
+    fetch('/filter', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: { 'Content-type': 'application/json' }
+    })
       .then((res) =>
         res.json()
       )
       .then((data) => {
-        if (data.length > 0) {
-          this.setState({ coins: data });
+        if (this.state.coinsPerPage > data.length > 0) {
+          this.setState({
+            coins: data,
+            next: true
+          });
         }
-        else { console.log('err', data) }
+        else if (data.length > 0) {
+          this.setState({
+            coins: data,
+            next: false
+          });
+        }
+        else { console.log('error - no data') }
       });
   }
 
@@ -58,6 +131,24 @@ class CoinsList extends Component {
             coin={coin}
             changeCoin={this.props.changeCoin} />)}
         </SixCoins>
+        <Footer>
+          <label htmlFor="pagination">Coins per Page</label>
+          <input type="number" id="pagination"
+            onChange={this.setCoinsPerPage}
+            onKeyUp={this.getCoins}
+            value={this.state.coinsPerPage} />
+          <button
+            onMouseDown={this.goToPrevious}
+            onMouseUp={this.getCoins}
+            disabled={this.state.prev} >previous</button>
+          <span>page: {
+            this.state.countFromCoin / this.state.coinsPerPage + 1
+          }   </span>
+          <button
+            onMouseDown={this.goToNext}
+            onMouseUp={this.getCoins}
+            disabled={this.state.next} >next</button>
+        </Footer>
       </div>
 
     )
@@ -103,4 +194,9 @@ const Filters = styled.div`
 
 const AdminLink = styled.div`
     padding-top: 2vw;
+`;
+
+const Footer = styled.div`
+  margin-top: 3vh;
+  text-align: center;
 `;
