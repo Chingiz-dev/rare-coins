@@ -23,10 +23,10 @@ class SimpleFilter extends Component {
         <InputAndButton>
           <div>
             <Input type="text" id="filter"
-              value={this.state.coinType} onChange={this.handleInput} />
+              value={this.state.coinType.toUpperCase()} onChange={this.handleInput} />
           </div>
           <Link to="/coinslist" onClick={this.handleClick} >
-            <Button type="submit">Search</Button>
+            <Button type="button">Search</Button>
           </Link>
         </InputAndButton>
 

@@ -1,89 +1,99 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
-import { Select } from 'antd';
-import 'antd/dist/antd.css';
-const { Option } = Select;
 
 
 class ComplexFilter extends Component {
+
+  state = {
+    coin: "",
+    country: "",
+    metal: "",
+    quality: "",
+    yearFrom: '',
+    yearTo: '',
+    priceFrom: '',
+    priceTo: '',
+  }
+
+  handleInput = (evt) => {
+    this.setState({ [evt.target.id]: evt.target.value });
+  }
 
   onChange = (value) => {
     console.log(`selected ${value}`);
   }
 
-  handleChange = (value) => {
-    console.log(`selected ${value}`);
+  handleButtonClick = () => {
+
+    console.log(this.state);
   }
 
   render = () => {
     return (
       <FilterForm>
-        <label htmlFor="filter"><b>Input field</b></label>
-        <InputAndButton>
+        <label htmlFor="coin"><b>Input field</b></label>
+        <InputRow>
           <div>
-            <Input type="text" id="filter"
-            // value={this.state.coinType} onChange={this.handleInput}
-            />
+            <Input type="text" id="coin"
+              value={this.state.coin.toUpperCase()}
+              onChange={this.handleInput} />
           </div>
 
-          <Link to="/coinslist" onClick={this.handleClick} >
-            <Button type="submit">Search</Button>
+          <Link to="/coinslist" onClick={this.handleButtonClick} >
+            <Button type="button">Search</Button>
           </Link>
-        </InputAndButton>
+        </InputRow>
 
-        <Filters>
+        <LinkDiv>
           <StyledLink to="/">Advanced filter &#708;</StyledLink>
-        </Filters>
-        <div>
+        </LinkDiv>
+
+        <InputRow>
           <div>
-            <label htmlFor="countryselect">Issuing country</label>
+            <label htmlFor="country"><b>Issuing country</b></label>
+            <br />
+            <Input type="text" id="country"
+              onChange={this.handleInput}
+              value={this.state.country.toUpperCase()} />
           </div>
-          <Select
-            id="countryselect"
-            showSearch
-            style={{
-              width: '26vw',
-              border: '1px solid black',
-              height: '7vh'
-            }}
-            placeholder="Select a Country"
-            optionFilterProp="children"
-            onChange={this.onChange}
-            // onFocus={onFocus}
-            // onBlur={onBlur}
-            onSearch={this.onSearch}
-            filterOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            <Option value="Canada">Canada</Option>
-            <Option value="China">China</Option>
-            <Option value="Iran">Iran</Option>
-          </Select>
-        </div>
-        <div>
-          <label htmlFor="filter1">Issuing country</label>
-          <br />
-          <Input type="text" id="filter1"
-          // onChange={this.handleInput} value={this.state.pass}
-          />
-        </div>
-        <div>
+          <div>
+            <label htmlFor="price"><b>Price</b></label>
+            <br />
+            <span>from</span>  <InputSmall type="number" id="priceFrom"
+              onChange={this.handleInput}
+              value={this.state.priceFrom} />
+            <span>to</span>  <InputSmall type="number" id="priceTo"
+              onChange={this.handleInput}
+              value={this.state.priceTo} />
+          </div>
+        </InputRow>
 
-          <label htmlFor="filter2">Metal</label>
-          <br />
-          <Input type="text" id="filter2"
-          // onChange={this.handleInput} value={this.state.pass}
-          />
+        <InputRow>
+          <div>
+            <label htmlFor="metal"><b>Metal</b></label>
+            <br />
+            <Input type="text" id="metal"
+              onChange={this.handleInput}
+              value={this.state.metal.toUpperCase()} />
+          </div>
+          <div>
+            <label htmlFor="year"><b>Year of issue</b></label>
+            <br />
+            <span>from</span>  <InputSmall type="number" id="yearFrom"
+              onChange={this.handleInput}
+              value={this.state.yearFrom} />
+            <span>to</span>  <InputSmall type="number" id="yearTo"
+              onChange={this.handleInput}
+              value={this.state.yearTo} />
+          </div>
+        </InputRow>
 
-        </div>
         <div>
-          <label htmlFor="filter3">Quality of the coin</label>
+          <label htmlFor="quality"><b>Quality of the coin </b></label>
           <br />
-          <Input type="text" id="filter3"
-          // onChange={this.handleInput} value={this.state.pass}
-          />
+          <Input type="text" id="quality"
+            onChange={this.handleInput} value={this.state.quality.toUpperCase()} />
 
         </div>
       </FilterForm >
@@ -97,12 +107,9 @@ const SubmitDiv = styled.div`
 `;
 
 
-const InputAndButton = styled.div`
+const InputRow = styled.div`
     display: flex;
-`;
 
-const UpperSearchDiv = styled.div`
-    display: flex;
 `;
 
 const StyledLink = styled(Link)`
@@ -111,14 +118,22 @@ const StyledLink = styled(Link)`
     color: blueviolet;
 }`;
 
-const Filters = styled.div`
-    margin-bottom: 2vh;
+const LinkDiv = styled.div`
+    margin-bottom: 3vh;
 `
 
 const FilterForm = styled.div`
     margin-left: 7vw;
 `;
 
+const InputSmall = styled.input`
+    border: 1px solid black;
+    width: 12.1vw;
+    height: 7vh;
+    margin: 0.7vh 2vw 0.9vh 0.5vw;
+    font-size: 3vh;
+    padding-left: 1vw;
+`;
 
 const Input = styled.input`
     border: 1px solid black;

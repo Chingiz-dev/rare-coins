@@ -66,13 +66,8 @@ class CoinsList extends Component {
 
 
 export default CoinsList;
-const Grey = styled.span`
-    color: #B1ABAB;
-`;
 
 const HomeLink = styled(Link)`
-  position: relative;
-  bottom: -15px;
     color: #B1ABAB;
   &:hover{
     color: blueviolet;

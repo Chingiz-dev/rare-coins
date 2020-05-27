@@ -11,7 +11,7 @@ class OneCoin extends Component {
 
         <ImagesDiv>
           <div>
-            <CoinImage src={coin.obv} alt={coin.coin} />
+            <UpperCoinImage src={coin.obv} alt={coin.coin} />
           </div>
           <div >
             <CoinImage src={coin.rev} alt={coin.coin} />
@@ -80,11 +80,21 @@ const StyledLink = styled(Link)`
 }`;
 
 const CoinImage = styled.img`
+    padding-left: 7vw;
+    height: 42.5vh;
+    transition: 0.5s;
+    &:hover {
+      transform: scale(1.1);
+    }
+`;
+
+const UpperCoinImage = styled.img`
+    padding-left: 7vw;
     margin-bottom: 5vh;
     height: 42.5vh;
     transition: 0.5s;
     &:hover {
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
 `;
 
@@ -92,7 +102,7 @@ const Main = styled.div`
     display: flex;
     justify-content: center;
     padding-top: 5vh;
-    height: 95vh;
+    height: 90vh;
 `;
 
 const ImagesDiv = styled.div`
@@ -100,7 +110,7 @@ const ImagesDiv = styled.div`
 `;
 
 const TextDiv = styled.div`
-    width: 35.3vw;
+    width: 30vw;
     background-color: rgba(196, 196, 196, 0.5);
     padding: 4vh 3vw 2vh 3vw;
     color: black;
@@ -123,5 +133,6 @@ const Tr = styled.tr`
 
 
 const Table = styled.table`
+    border-collapse: collapse;
     width: 100%;
 `;

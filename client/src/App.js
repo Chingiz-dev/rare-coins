@@ -11,7 +11,7 @@ import HidenReg from './pages/HidenReg';
 
 class App extends React.Component {
   state = {
-    filter: 'notfound',
+    filter: '',
     coinDetails: '',
     token: localStorage.getItem('token'),
     username: localStorage.getItem('username')
