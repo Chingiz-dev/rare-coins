@@ -76,7 +76,7 @@ app.post('/register', (req, res) => {
   // Check that user not exists
   users.push(user);
   res.json({ login: user.login });
-  console.log(user.login);
+  // console.log(user.login);
 });
 
 
