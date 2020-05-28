@@ -142,7 +142,7 @@ app.post('/filter', (req, res) => {
   const coinsPP = req.body.coinsPP;
   const countFromCoin = req.body.countFromCoin;
 
-  console.log(coinName, 'printed');
+  // console.log(coinName, 'printed');
   // const sql = 'SELECT * FROM coins where typ = "' + coinName +
   const sql = 'SELECT * FROM coins where ' + (coinName ? 'typ = "' + coinName + '" OR' : '') +
     (coinName ?  ' coin = "' + coinName + '" OR' : '') +
@@ -161,7 +161,7 @@ app.post('/filter', (req, res) => {
     // '") or (  year > "' + yearFrom +
     // '" and year < "' + yearTo +
     // '") LIMIT 0, 6';
-  console.log(sql);
+  // console.log(sql);
   pool.query(sql, (err, data) => {
     if (err) {
       // res.json(err);
