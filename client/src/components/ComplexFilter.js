@@ -163,6 +163,7 @@ const Button = styled.button`
     background-color: blueviolet;
     color: white;
     &:hover{
+      border-radius: 3px;
       opacity: 0.8;
       cursor: pointer;}
 `;

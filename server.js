@@ -109,7 +109,7 @@ app.delete('/logout', (req, res) => {
 
 
 app.get('/coinsall', (req, res) => {
-  pool.query('SELECT * FROM coins LIMIT 0, 4', (err, data) => {
+  pool.query('SELECT * FROM coins LIMIT 0, 2', (err, data) => {
     if (err) {
       res.status(500);
     } else {

@@ -213,6 +213,10 @@ const Button = styled.button`
     height: 7.3vh;
     background-color: blueviolet;
     color: white;
+    &:hover{
+      border-radius: 3px;
+      opacity: 0.8;
+      cursor: pointer;}
 `;
 
 const Form = styled.form`

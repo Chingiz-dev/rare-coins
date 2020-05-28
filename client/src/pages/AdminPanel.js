@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import SimpleFilter from '../components/SimpleFilter';
-import SmallCoinDescription from '../components/SmallCoinDescription';
+import AdminCoin from '../components/AdminCoin';
 import { Link } from 'react-router-dom';
 class AdminPanel extends Component {
 
@@ -76,7 +76,7 @@ class AdminPanel extends Component {
         <Header>
           <H1>Admin panel</H1>
           <HomeLink>
-            <StyledLink to="/">back to homepage</StyledLink>
+            <StyledLink to="/" onClick={this.handleLogout} >back to homepage</StyledLink>
           </HomeLink>
         </Header>
         {this.state.username ?
@@ -86,26 +86,17 @@ class AdminPanel extends Component {
                 changeFilter={this.state.changeFilter} />
             </div>
             <div>
-              <StyledLink to="/admin/add"><LinkToCoin><Circle>+</Circle><div> Add a new coin</div></LinkToCoin></StyledLink>
+              <StyledLink to="/admin/add"><LinkToCoin><SmallCoinImage src="addcoin.gif" /> Add a new coin </LinkToCoin></StyledLink>
             </div>
             <div>
 
-              {this.state.coins.map(coin => <SmallCoinDescription
+              {this.state.coins.map(coin => <AdminCoin
                 key={coin.coinID}
                 coin={coin}
                 changeCoin={this.changeCoin} />)}
             </div>
 
-            <p>Hello, {this.state.username} !</p>
-            <div>
-              <StyledLink to="/admin/edit">Edit Coins</StyledLink>
-            </div>
-            <div>
-              <StyledLink to="/admin/add">Add coin</StyledLink>
-            </div>
-            <Link to="/">
-              <Button type="button" onClick={this.handleLogout} >Sign out</Button>
-            </Link>
+
           </div> :
           <div>
             <Form onSubmit={this.handleSubmit}>
@@ -169,6 +160,7 @@ const Button = styled.button`
     background-color: blueviolet;
     color: white;
     &:hover{
+      border-radius: 3px;
       opacity: 0.8;
       cursor: pointer;}
 `;
@@ -195,16 +187,18 @@ const Form = styled.form`
 `;
 
 const LinkToCoin = styled.div`
-    width: 25vw;
+    width: 20vw;
     height: 16.6vh;
     display: flex;
-    margin: 1vh 0 1vh 5vw;
+    margin: 1vh 0 1vh 6.3vw;
+    line-height: 15vh;
 `;
 
-const Circle = styled.div`
-    width: 110px;
-    height: 110px;
-    border: 1px solid black;
-    border-radius: 50%;
-    text-align: center;
+const SmallCoinImage = styled.img`
+    height: 17.5vh;
+    margin-right: 2vw;
+    transition: 0.5s;
+    &:hover {
+      transform: scale(1.15);
+    }
 `;

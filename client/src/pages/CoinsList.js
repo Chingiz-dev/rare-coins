@@ -215,4 +215,11 @@ const ButtonFooter = styled.button`
     width: 5vw;
     border: none;
     margin: 0vh 2vw;
+    color: black;
+    &:hover{
+      background-color: blueviolet;
+      opacity: 0.8;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;}
 `;
