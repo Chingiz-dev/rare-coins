@@ -85,15 +85,20 @@ class AdminPanel extends Component {
               <SimpleFilter
                 changeFilter={this.state.changeFilter} />
             </div>
-            <div>
-              <StyledLink to="/admin/add"><LinkToCoin><SmallCoinImage src="addcoin.gif" /> Add a new coin </LinkToCoin></StyledLink>
-            </div>
-            <div>
+            <Link to="/admin/add">
+              <LinkToCoin>
+                <SmallCoinImage src="addcoin.gif" /><AddText>Add a new coin</AddText>
+              </LinkToCoin>
+            </Link>
 
+            <div>
               {this.state.coins.map(coin => <AdminCoin
                 key={coin.coinID}
                 coin={coin}
-                changeCoin={this.changeCoin} />)}
+                changeCoin={this.changeCoin}
+                // editCoin={this.props.editCoin}
+
+                />)}
             </div>
 
 
@@ -187,11 +192,13 @@ const Form = styled.form`
 `;
 
 const LinkToCoin = styled.div`
+    display: inline-flex;
+    margin: 1vh 0vw 1vh 6.3vw;
     width: 20vw;
-    height: 16.6vh;
-    display: flex;
-    margin: 1vh 0 1vh 6.3vw;
-    line-height: 15vh;
+`;
+
+const AddText = styled.div`
+      padding-top: 8vh;
 `;
 
 const SmallCoinImage = styled.img`

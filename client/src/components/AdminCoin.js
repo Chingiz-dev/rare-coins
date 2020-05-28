@@ -6,11 +6,33 @@ class AdminCoin extends React.Component {
 
 
   handleDeleteClick = () => {
-    this.props.deleteCoin(this.props.coin);
+    const promptDelete = prompt("Print Yes to delete")
+    if (promptDelete === 'Yes') {
+      this.deleteThisCoin();
+    }
+  }
+
+  deleteThisCoin = () => {
+    const requestBody = {
+      coinID: this.props.coin.coinID,
+      token: localStorage.getItem('token')
+    };
+    console.log(requestBody);
+    fetch('/deletecoin', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: { 'Content-type': 'application/json' }
+    })
+      .then((res) =>
+        res.json()
+      )
+      .then((data) => {
+        console.log(data);
+      })
   }
 
   handleEditClick = () => {
-    this.props.EditCoin(this.props.coin);
+    this.props.editCoin(this.props.coin);
   }
 
   render() {
@@ -28,8 +50,7 @@ class AdminCoin extends React.Component {
         <Link to="/admin/edit" onClick={this.handleEditClick} >
           <Button>edit</Button>
         </Link>
-
-          <Button type="button">Delete</Button>
+        <Button type="button" onClick={this.handleDeleteClick} >Delete</Button>
       </Section>
     )
   }

@@ -108,6 +108,28 @@ app.delete('/logout', (req, res) => {
 });
 
 
+app.post('/deletecoin', (req, res) => {
+  if (!checkToken(req)) {
+    res.sendStatus(401);
+    console.log('not deleted');
+  } else {
+    let coinID = +req.body.coinID;
+    const deleteCoin = `delete from coins where coinID = ${coinID}`;
+    console.log(deleteCoin, 'deleted');
+    //  res.status(201).json(addCoinSql);
+    pool.query(deleteCoin, (err, data) => {
+      if (!err) {
+        console.log(data);
+        res.status(201).json('coin deleted');
+      } else {
+        console.log(err);
+        res.status(500).json('server down');
+      }
+    });
+  }
+});
+
+
 app.get('/coinsall', (req, res) => {
   pool.query('SELECT * FROM coins LIMIT 0, 2', (err, data) => {
     if (err) {
@@ -142,26 +164,14 @@ app.post('/filter', (req, res) => {
   const coinsPP = req.body.coinsPP;
   const countFromCoin = req.body.countFromCoin;
 
-  // console.log(coinName, 'printed');
-  // const sql = 'SELECT * FROM coins where typ = "' + coinName +
   const sql = 'SELECT * FROM coins where ' + (coinName ? 'typ = "' + coinName + '" OR' : '') +
-    (coinName ?  ' coin = "' + coinName + '" OR' : '') +
-    (country ? ' country = "' + country  + '" or ' : '') +
-    (metal ? ' metal = "' + metal  + '" or' : '') +
-    (quality ? ' quality = "' + quality  + '" OR' : '') +
-    (priceFrom < priceTo ? '( price >  "' + priceFrom  + '" and price < "' + priceTo + '" ) or' : '') +
-    (yearFrom < yearTo ? '( year >  "' + yearFrom  + '" and year < "' + yearTo + '") or' : '') +
+    (coinName ? ' coin = "' + coinName + '" OR' : '') +
+    (country ? ' country = "' + country + '" or ' : '') +
+    (metal ? ' metal = "' + metal + '" or' : '') +
+    (quality ? ' quality = "' + quality + '" OR' : '') +
+    (priceFrom < priceTo ? '( price >  "' + priceFrom + '" and price < "' + priceTo + '" ) or' : '') +
+    (yearFrom < yearTo ? '( year >  "' + yearFrom + '" and year < "' + yearTo + '") or' : '') +
     ' coin = "coin" LIMIT ' + countFromCoin + ', ' + coinsPP;
-    // '" OR coin = "' + coinName +
-    // '" OR  country = "' + country +
-    // '" or  metal = "' + metal +
-    // '" or quality = "' + quality +
-    // '" or (  price > "' + priceFrom +
-    // '" and price < "' + priceTo +
-    // '") or (  year > "' + yearFrom +
-    // '" and year < "' + yearTo +
-    // '") LIMIT 0, 6';
-  // console.log(sql);
   pool.query(sql, (err, data) => {
     if (err) {
       // res.json(err);
@@ -184,27 +194,10 @@ app.get('/coinstyp/:typ', (req, res) => {
   });
 });
 
-// app.get('/coin/:id', (req, res) => {
-//   const sql = 'SELECT * FROM coins WHERE coinID = ?';
-//   console.log(req.params.id);
-//   console.log(sql);
-//   pool.query(sql, [req.params.id], (err, data) => {
-//     if (err) {
-//       res.status(500).json(err);
-//     } else if (!data.length) {
-//       res.status(404).send();
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });
 
 app.post('/coin', upload.array('coin', 2), (req, res) => {
   // app.post('/coin', upload.single('coin'), (req, res) => {
-  // console.log(req.files);
-  // console.log(req.files[1].originalname, 'secondFile');
   console.log(req.body);
-
 
   if (!checkToken(req)) {
     res.sendStatus(401);
