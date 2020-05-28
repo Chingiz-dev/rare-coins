@@ -13,6 +13,7 @@ class App extends React.Component {
   state = {
     filter: {},
     coinDetails: '',
+    editCoin: {},
     token: localStorage.getItem('token'),
     username: localStorage.getItem('username')
   }
@@ -46,6 +47,12 @@ class App extends React.Component {
     this.setState({ coinDetails: value });
   }
 
+  editCoin = (value) => {
+    this.setState({
+      editCoin: value,
+    })
+  }
+
   render = () => {
     return (
 
@@ -55,10 +62,11 @@ class App extends React.Component {
             <HomePage changeFilter={this.changeFilter} />
           </Route>
           <Route path="/search" exact>
-            <SearchCoin  changeComplexFilter={this.changeComplexFilter} />
+            <SearchCoin changeComplexFilter={this.changeComplexFilter} />
           </Route>
           <Route path="/coinslist" exact>
-            <CoinsList filter={this.state.filter}
+            <CoinsList
+              filter={this.state.filter}
               changeCoin={this.changeCoin}
               changeFilter={this.changeFilter} />
           </Route>
@@ -66,10 +74,13 @@ class App extends React.Component {
             <OneCoin coin={this.state.coinDetails} />
           </Route>
           <Route path="/admin" exact>
-            <AdminPanel onLogin={this.onLogin} onLogout={this.onLogout} />
+            <AdminPanel
+              onLogin={this.onLogin}
+              onLogout={this.onLogout}
+              editCoin={this.editCoin} />
           </Route>
           <Route path="/admin/edit" exact>
-            <EditCoin token={this.state.token} />
+            <EditCoin token={this.state.token} coin={this.state.editCoin}/>
           </Route>
           <Route path="/admin/add" exact>
             <AddCoin token={this.state.token} />

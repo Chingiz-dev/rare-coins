@@ -28,6 +28,7 @@ class AdminCoin extends React.Component {
       )
       .then((data) => {
         console.log(data);
+        this.props.rerenderAdmin();
       })
   }
 

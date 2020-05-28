@@ -17,9 +17,9 @@ class AdminPanel extends Component {
     this.setState({ filter: value });
   }
 
-  changeCoin = (coin) => {
-    console.log(coin.coinID);
-  }
+  // changeCoin = (coin) => {
+  //   console.log(coin.coinID);
+  // }
 
   componentDidMount = () => {
     this.state.username && this.getCoins();
@@ -40,6 +40,10 @@ class AdminPanel extends Component {
 
   handleInput = (evt) => {
     this.setState({ [evt.target.id]: evt.target.value });
+  }
+
+  rerendeAdmin = () => {
+    this.getCoins();
   }
 
   handleLogout = () => {
@@ -76,7 +80,7 @@ class AdminPanel extends Component {
         <Header>
           <H1>Admin panel</H1>
           <HomeLink>
-            <StyledLink to="/" onClick={this.handleLogout} >back to homepage</StyledLink>
+            <StyledLink to="/" onClick={this.handleLogout} >Log out to homepage</StyledLink>
           </HomeLink>
         </Header>
         {this.state.username ?
@@ -95,10 +99,11 @@ class AdminPanel extends Component {
               {this.state.coins.map(coin => <AdminCoin
                 key={coin.coinID}
                 coin={coin}
-                changeCoin={this.changeCoin}
-                // editCoin={this.props.editCoin}
+                rerenderAdmin={this.rerendeAdmin}
+                editCoin={this.props.editCoin}
+              // editCoin={this.props.editCoin}
 
-                />)}
+              />)}
             </div>
 
 
