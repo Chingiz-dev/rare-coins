@@ -132,22 +132,22 @@ class CoinsList extends Component {
             changeCoin={this.props.changeCoin} />)}
         </SixCoins>
         <Footer>
-          <label htmlFor="pagination">Coins per Page</label>
-          <input type="number" id="pagination"
+          <label htmlFor="pagination">Coins per page - </label>
+          <InputFooter type="number" id="pagination"
             onChange={this.setCoinsPerPage}
             onKeyUp={this.getCoins}
             value={this.state.coinsPerPage} />
-          <button
+          <ButtonFooter
             onMouseDown={this.goToPrevious}
             onMouseUp={this.getCoins}
-            disabled={this.state.prev} >previous</button>
+            disabled={this.state.prev} >previous</ButtonFooter>
           <span>page: {
             this.state.countFromCoin / this.state.coinsPerPage + 1
           }   </span>
-          <button
+          <ButtonFooter
             onMouseDown={this.goToNext}
             onMouseUp={this.getCoins}
-            disabled={this.state.next} >next</button>
+            disabled={this.state.next} >next</ButtonFooter>
         </Footer>
       </div>
 
@@ -174,11 +174,11 @@ const Header = styled.header`
     display:flex;
     margin: 0.2vh 4.5vw 1.2vh 7vw;
     justify-content: space-between;
-`
+`;
 const SixCoins = styled.div`
     display:flex;
     flex-wrap: wrap;
-`
+`;
 
 const H1 = styled.h1`
     width: 70vw;
@@ -190,13 +190,29 @@ const H1 = styled.h1`
 const Filters = styled.div`
     margin-left: 7vw;
     margin-bottom: 0.5vh;
-`
+`;
 
 const AdminLink = styled.div`
     padding-top: 2vw;
 `;
 
 const Footer = styled.div`
-  margin-top: 3vh;
-  text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    line-height: 1vh;
+    text-align: center;
+    letter-spacing: 0.03em;
+`;
+const InputFooter = styled.input`
+    width: 2vw;
+    border: none;
+`;
+
+const ButtonFooter = styled.button`
+    width: 5vw;
+    border: none;
+    margin: 0vh 2vw;
 `;

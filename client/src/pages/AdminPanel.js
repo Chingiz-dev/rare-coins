@@ -109,17 +109,19 @@ class AdminPanel extends Component {
           </div> :
           <div>
             <Form onSubmit={this.handleSubmit}>
-              <label htmlFor="login">Логин</label>
+              <label htmlFor="login"><b>Login</b></label>
               <div>
-                <input type="text" id="login" onChange={this.handleInput} value={this.state.login} />
+                <Input type="text" id="login" onChange={this.handleInput} value={this.state.login} />
               </div>
-              <label htmlFor="pass">Пароль</label>
+              <label htmlFor="pass"><b>Password</b></label>
               <div>
-                <input type="password" id="pass" onChange={this.handleInput} value={this.state.pass} />
+                <Input type="password" id="pass" onChange={this.handleInput} value={this.state.pass} />
               </div>
-              <Button type="submit">Sign in</Button>
+              <ButtonDiv>
+                <Button type="submit">Sign in</Button>
+              </ButtonDiv>
             </Form>
-            <StyledLink to="/hidenreg">HidenReg</StyledLink>
+            <HidenLink to="/hidenreg">HidenReg</HidenLink>
           </div>
         }
       </div >
@@ -129,10 +131,23 @@ class AdminPanel extends Component {
 }
 export default AdminPanel;
 
+const ButtonDiv = styled.div`
+    display: flex;
+    justify-content: center
+`;
+
+const Input = styled.input`
+    border: 1px solid black;
+    width: 26vw;
+    height: 7vh;
+    margin: 0.7vh 0vw 2.9vh 0;
+    font-size: 3vh;
+    padding-left: 1vw;
+`;
+
 const HomeLink = styled.div`
     padding-top: 2vw;
 `;
-
 
 const StyledLink = styled(Link)`
     color: black;
@@ -140,14 +155,22 @@ const StyledLink = styled(Link)`
     color: blueviolet;
 }`;
 
-
+const HidenLink = styled(Link)`
+    color: white;
+  &:hover{
+    color: blueviolet;
+}`;
 
 const Button = styled.button`
     border: none;
+    margin-top: 0.7vh;
     width: 8vw;
-    height: 7.3vh;
+    height: 7.4vh;
     background-color: blueviolet;
     color: white;
+    &:hover{
+      opacity: 0.8;
+      cursor: pointer;}
 `;
 
 const Header = styled.header`

@@ -25,7 +25,6 @@ const pool = mysql.createPool({
 
 const app = express();
 app.use(express.json());
-// app.use(cors());
 // app.use('/images', express.static('images'));
 app.use(express.static('images'));
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -109,10 +108,8 @@ app.delete('/logout', (req, res) => {
 });
 
 
-
-
 app.get('/coinsall', (req, res) => {
-  pool.query('SELECT * FROM coins LIMIT 0, 6', (err, data) => {
+  pool.query('SELECT * FROM coins LIMIT 0, 4', (err, data) => {
     if (err) {
       res.status(500);
     } else {
@@ -121,17 +118,17 @@ app.get('/coinsall', (req, res) => {
   });
 });
 
-app.get('/coins/:typ', (req, res) => {
-  const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" OR coin = "' + req.params.typ + '" LIMIT 0, 6';
-  pool.query(sql, (err, data) => {
-    if (err) {
-      // res.json(err);
-      res.status(500);
-    } else {
-      res.json(data);
-    }
-  });
-});
+// app.get('/coins/:typ', (req, res) => {
+//   const sql = 'SELECT * FROM coins where typ = "' + req.params.typ + '" OR coin = "' + req.params.typ + '" LIMIT 0, 6';
+//   pool.query(sql, (err, data) => {
+//     if (err) {
+//       // res.json(err);
+//       res.status(500);
+//     } else {
+//       res.json(data);
+//     }
+//   });
+// });
 
 app.post('/filter', (req, res) => {
   const coinName = req.body.coinName;
@@ -155,8 +152,6 @@ app.post('/filter', (req, res) => {
     (priceFrom < priceTo ? '( price >  "' + priceFrom  + '" and price < "' + priceTo + '" ) or' : '') +
     (yearFrom < yearTo ? '( year >  "' + yearFrom  + '" and year < "' + yearTo + '") or' : '') +
     ' coin = "coin" LIMIT ' + countFromCoin + ', ' + coinsPP;
-
-
     // '" OR coin = "' + coinName +
     // '" OR  country = "' + country +
     // '" or  metal = "' + metal +
@@ -165,11 +160,8 @@ app.post('/filter', (req, res) => {
     // '" and price < "' + priceTo +
     // '") or (  year > "' + yearFrom +
     // '" and year < "' + yearTo +
-
     // '") LIMIT 0, 6';
   console.log(sql);
-
-
   pool.query(sql, (err, data) => {
     if (err) {
       // res.json(err);
@@ -192,20 +184,20 @@ app.get('/coinstyp/:typ', (req, res) => {
   });
 });
 
-app.get('/coin/:id', (req, res) => {
-  const sql = 'SELECT * FROM coins WHERE coinID = ?';
-  console.log(req.params.id);
-  console.log(sql);
-  pool.query(sql, [req.params.id], (err, data) => {
-    if (err) {
-      res.status(500).json(err);
-    } else if (!data.length) {
-      res.status(404).send();
-    } else {
-      res.json(data);
-    }
-  });
-});
+// app.get('/coin/:id', (req, res) => {
+//   const sql = 'SELECT * FROM coins WHERE coinID = ?';
+//   console.log(req.params.id);
+//   console.log(sql);
+//   pool.query(sql, [req.params.id], (err, data) => {
+//     if (err) {
+//       res.status(500).json(err);
+//     } else if (!data.length) {
+//       res.status(404).send();
+//     } else {
+//       res.json(data);
+//     }
+//   });
+// });
 
 app.post('/coin', upload.array('coin', 2), (req, res) => {
   // app.post('/coin', upload.single('coin'), (req, res) => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export default class HidenReg extends React.Component {
 
@@ -37,16 +38,50 @@ export default class HidenReg extends React.Component {
   render = () => {
     return (
       < div >
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="login">Логин</label>
-          <input type="text" id="login" onChange={this.handleInput} value={this.state.login} />
-          <label htmlFor="pass">Пароль</label>
-          <input type="password" id="pass" onChange={this.handleInput} value={this.state.pass} />
-          <button type="submit">Зарегаться</button>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <label htmlFor="login"><b>New login</b></label>
+          <div>
+            <Input type="text" id="login" onChange={this.handleInput} value={this.state.login} />
+          </div>
+          <label htmlFor="pass"><b>New password</b></label>
+          <div>
+            <Input type="password" id="pass" onChange={this.handleInput} value={this.state.pass} />
+          </div>
+          <Button type="submit">register</Button>
+        </Form>
         {this.state.newUser && <p>Hello, {this.state.login}</p>}
         <Link to="/admin">Go To Admin Panel</Link>
       </div >
     );
   }
 }
+
+
+const Form = styled.form`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+`;
+
+const Input = styled.input`
+    border: 1px solid black;
+    width: 26vw;
+    height: 7vh;
+    margin: 0.7vh 0vw 2.9vh 0;
+    font-size: 3vh;
+    padding-left: 1vw;
+`;
+
+const Button = styled.button`
+    border: none;
+    margin-top: 0.7vh;
+    width: 8vw;
+    height: 7.4vh;
+    background-color: blueviolet;
+    color: white;
+    &:hover{
+      opacity: 0.8;
+      cursor: pointer;}
+`;

@@ -49,11 +49,11 @@ class OneCoin extends Component {
                 </Tr>
                 <tr>
                   <Td>Weight</Td>
-                  <Td>{coin.weight}</Td>
+                  <Td>{coin.weight} g</Td>
                 </tr>
                 <Tr>
                   <Td>Price</Td>
-                  <Td>{coin.price}</Td>
+                  <Td>{coin.price}$</Td>
                 </Tr>
               </tbody>
             </Table>
