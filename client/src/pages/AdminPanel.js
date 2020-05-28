@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import SimpleFilter from '../components/SimpleFilter';
+import AdminFilter from '../components/AdminFilter';
 import AdminCoin from '../components/AdminCoin';
 import { Link } from 'react-router-dom';
 class AdminPanel extends Component {
@@ -25,6 +25,29 @@ class AdminPanel extends Component {
     this.state.username && this.getCoins();
   }
 
+
+  findCoin = (value) => {
+    const requestBody = {
+      coinName: value,
+      coinsPP: 1,
+      countFromCoin: 0
+    };
+    fetch('/filter', {
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers: { 'Content-type': 'application/json' }
+    })
+      .then((res) =>
+        res.json()
+      )
+      .then((data) => {
+        if (data.length > 0) {
+          this.setState({ coins: data });
+        }
+        else { console.log('err', data) }
+      });
+  }
+
   getCoins = () => {
     fetch('/coinsall')
       .then((res) =>
@@ -42,7 +65,7 @@ class AdminPanel extends Component {
     this.setState({ [evt.target.id]: evt.target.value });
   }
 
-  rerendeAdmin = () => {
+  rerenderAdmin = () => {
     this.getCoins();
   }
 
@@ -86,8 +109,8 @@ class AdminPanel extends Component {
         {this.state.username ?
           <div>
             <div>
-              <SimpleFilter
-                changeFilter={this.state.changeFilter} />
+              <AdminFilter
+                findCoin={this.findCoin} />
             </div>
             <Link to="/admin/add">
               <LinkToCoin>
@@ -99,7 +122,7 @@ class AdminPanel extends Component {
               {this.state.coins.map(coin => <AdminCoin
                 key={coin.coinID}
                 coin={coin}
-                rerenderAdmin={this.rerendeAdmin}
+                rerenderAdmin={this.rerenderAdmin}
                 editCoin={this.props.editCoin}
               // editCoin={this.props.editCoin}
 

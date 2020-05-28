@@ -107,7 +107,6 @@ app.delete('/logout', (req, res) => {
   }
 });
 
-
 app.post('/deletecoin', (req, res) => {
   if (!checkToken(req)) {
     res.sendStatus(401);
@@ -121,6 +120,52 @@ app.post('/deletecoin', (req, res) => {
       if (!err) {
         console.log(data);
         res.status(201).json('coin deleted');
+      } else {
+        console.log(err);
+        res.status(500).json('server down');
+      }
+    });
+  }
+});
+
+app.post('/editcoin', (req, res) => {
+  if (!checkToken(req)) {
+    res.sendStatus(401);
+    // console.log('not edited');
+  } else {
+    console.log(req.body);
+    let coinID = +req.body.coinID;
+    console.log(coinID);
+    let typ = req.body.typ;
+    let coin = req.body.coin;
+    let shortD = req.body.shortD;
+    let longD = req.body.longD;
+    let country = req.body.country;
+    let metal = req.body.metal;
+    let quality = req.body.quality;
+    let denom = req.body.denom;
+    let year = +req.body.year;
+    let weight = +req.body.weight;
+    let price = +req.body.price;
+    const editCoin = `UPDATE coins
+    SET
+     typ = '${typ}',
+     coin = '${coin}',
+     shortD = '${shortD}',
+     longD = '${longD}',
+     country = '${country}',
+     metal = '${metal}',
+     quality = '${quality}',
+     denom = '${denom}',
+     year = ${year},
+     weight = ${weight},
+     price = ${price}
+     where coinID = ${coinID}`;
+    console.log(editCoin);
+    pool.query(editCoin, (err, data) => {
+      if (!err) {
+        console.log(data);
+        res.status(201).json('coin edited');
       } else {
         console.log(err);
         res.status(500).json('server down');
