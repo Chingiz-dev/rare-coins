@@ -6,8 +6,8 @@ class AdminCoin extends React.Component {
 
 
   handleDeleteClick = () => {
-    const promptDelete = prompt("Print Yes to delete")
-    if (promptDelete === 'Yes') {
+    const promptDelete = prompt("Print '" + this.props.coin.coin + "' to delete")
+    if (promptDelete === this.props.coin.coin) {
       this.deleteThisCoin();
     }
   }

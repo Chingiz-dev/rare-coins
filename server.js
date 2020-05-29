@@ -176,7 +176,7 @@ app.post('/editcoin', (req, res) => {
 
 
 app.get('/coinsall', (req, res) => {
-  pool.query('SELECT * FROM coins LIMIT 0, 2', (err, data) => {
+  pool.query('SELECT * FROM coins', (err, data) => {
     if (err) {
       res.status(500);
     } else {

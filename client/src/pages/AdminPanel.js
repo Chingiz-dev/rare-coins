@@ -29,7 +29,7 @@ class AdminPanel extends Component {
   findCoin = (value) => {
     const requestBody = {
       coinName: value,
-      coinsPP: 1,
+      coinsPP: 12,
       countFromCoin: 0
     };
     fetch('/filter', {
@@ -114,7 +114,7 @@ class AdminPanel extends Component {
             </div>
             <Link to="/admin/add">
               <LinkToCoin>
-                <SmallCoinImage src="addcoin.gif" /><AddText>Add a new coin</AddText>
+                <SmallCoinImage src="addcoin.gif" alt="spinning coin" /><AddText>Add a new coin</AddText>
               </LinkToCoin>
             </Link>
 
