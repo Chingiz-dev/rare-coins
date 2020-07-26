@@ -175,9 +175,15 @@ const Header = styled.header`
     margin: 0.2vh 4.5vw 1.2vh 7vw;
     justify-content: space-between;
 `;
+
 const SixCoins = styled.div`
-    display:flex;
-    flex-wrap: wrap;
+    @media (orientation: portrait) {
+      display: block;
+    }
+    @media (orientation: landscape) {
+      display: flex;
+      flex-wrap: wrap;
+    }
 `;
 
 const H1 = styled.h1`
@@ -205,6 +211,7 @@ const Footer = styled.div`
     line-height: 1vh;
     text-align: center;
     letter-spacing: 0.03em;
+    background-color: white;
 `;
 const InputFooter = styled.input`
     width: 2vw;

@@ -52,7 +52,12 @@ const Header = styled.header`
 `;
 
 const ThreeCoin = styled.div`
-    display:flex;
+    @media (orientation: portrait) {
+      display: block;
+    }
+    @media (orientation: landscape) {
+      display: flex;
+    }
     margin-left: 7vw;
 `;
 
