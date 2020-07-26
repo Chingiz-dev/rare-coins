@@ -168,7 +168,7 @@ class EditCoin extends Component {
 
             <Button type="submit">Save</Button>
             <Link to="/admin" >
-              <Button type="reset">Cansel</Button>
+              <Button type="reset">Cancel</Button>
             </Link>
 
 
