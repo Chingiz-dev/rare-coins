@@ -77,7 +77,8 @@ const StyledLink = styled(Link)`
     color: black;
   &:hover{
     color: blueviolet;
-}`;
+  }
+`;
 
 const CoinImage = styled.img`
     padding-left: 7vw;
@@ -99,10 +100,15 @@ const UpperCoinImage = styled.img`
 `;
 
 const Main = styled.div`
-    display: flex;
-    justify-content: center;
     padding-top: 5vh;
     height: 90vh;
+    @media (orientation: portrait) {
+      display: block;
+    }
+    @media (orientation: landscape) {
+      display: flex;
+      justify-content: center;
+    }
 `;
 
 const ImagesDiv = styled.div`
