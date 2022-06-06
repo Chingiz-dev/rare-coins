@@ -11,3 +11,7 @@ Run `npm run client-build`
 
 ## Build react app and run
 Run `npm run build-and-start`
+
+
+## In case of ssl errors, try:
+Run `set NODE_OPTIONS=--openssl-legacy-provider`
